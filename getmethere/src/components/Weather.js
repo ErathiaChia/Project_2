@@ -5,104 +5,117 @@ import moment from "moment";
 export default function Weather() {
 	const now = moment().format().slice(0, 19);
 	// console.log(now);
-	// const [time, setTime] = React.useState(moment().format("MMMM Do YYYY, h:mm a"));
-	const [time, setTime] = React.useState("");
+	const [APIresults, setAPIResults] = React.useState([]);
 	const [locationSelection, setLocationSelection] = React.useState({
-		startLocation: "",
-		endLocation: "",
+		startLocation: "Select start location",
+		endLocation: "Select end location",
+	});
+	const [locationForecast, setLocationForecast] = React.useState({
 		startForecast: "",
 		endForecast: "",
 	});
-	// const [locationForecast, setLocationForecast] = React.useState()
-	const [results, setResults] = React.useState([]);
+
 	const getAPI = async () => {
 		const response = await axios.get(
-			// "https://api.unsplash.com/photos/random?client_id=qmVaKW82sk_6DGdzL7kS_BNFDDGeIPoqfkqdfjQ3CiY&orientation=landscape&query=space"
-			`https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=${now}`
-			// "https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&q=HE12"
-			// "https://the-ultimate-api-challenge.herokuapp.com/http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2",
-			// {
-			// 	headers: {
-			// 		AccountKey: "l3utmkQ1SKq2xOQ/+2DB3A==",
-			// 		accept: "application/json",
-			// 	},
-			// }
+			// use this url to get current weather forecast
+			// `https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date_time=${now}`
+
+			//to make sure it is working properly, compare with 5/3/22 since it has different values
+			`https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date=2022-03-05`
 		);
 		if (response.status === 200) {
 			// console.log(response);
 			console.log(response.data.items[0].forecasts);
-			setResults(response.data.items[0].forecasts);
+			setAPIResults(response.data.items[0].forecasts);
 		}
 	};
 	function handleChange(event) {
-		console.log(event);
 		setLocationSelection((prevData) => {
 			return {
 				...prevData,
 				[event.target.name]: event.target.value,
 			};
 		});
-		console.log(locationSelection);
-		let startForecastIndex = results.findIndex(
-			(element) => element.area == locationSelection.startLocation
-		);
-		let endForecastIndex = results.findIndex(
-			(element) => element.area == locationSelection.endLocation
-		);
-		setLocationSelection((prevData) => {
-			return {
-				...prevData,
-				startForecast: results[startForecastIndex + 1].forecast,
-				endForecast: results[endForecastIndex + 1].forecast,
-			};
-		});
+
+		//search APIresults for index with same name as selected location
+		let index = APIresults.findIndex((location) => location.area == event.target.value);
+		//don't do anything if not found (or if "select start/end location" is selected)
+		if (index > -1) {
+			//tried combining both into one setLocationForecast but it didn't work..so i split into start and end
+			if (event.target.name == "startLocation") {
+				setLocationForecast((prevData) => {
+					return {
+						...prevData,
+						startForecast: APIresults[index].forecast,
+					};
+				});
+			}
+			if (event.target.name == "endLocation") {
+				setLocationForecast((prevData) => {
+					return {
+						...prevData,
+						endForecast: APIresults[index].forecast,
+					};
+				});
+			}
+		}
 	}
+
 	React.useEffect(() => {
 		getAPI();
 	}, []);
 
-	// React.useEffect(() => {
-	// 	getAPI();
-	// 	const interval = setInterval(() => {
-	// 		displayTime();
-	// 	}, 1000);
-	// 	return () => {
-	// 		clearInterval(interval);
-	// 	};
-	// }, [time]);
+	//time works as a separate component, every second only this component re-renders instead of entire page previously
+	function Time() {
+		const [time, setTime] = React.useState("");
 
-	// function displayTime() {
-	// 	setTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
-	// }
+		React.useEffect(() => {
+			const interval = setInterval(() => {
+				displayTime();
+			}, 1000);
+			return () => {
+				clearInterval(interval);
+			};
+		}, [time]);
+
+		function displayTime() {
+			setTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+		}
+
+		return (
+			<h2 id="time" className="time">
+				{time}
+			</h2>
+		);
+	}
 
 	return (
 		<>
 			<div className="weather-top">
 				<h1>Tell me the weather for:</h1>
-				<h2>{time}</h2>
+				<Time />
 			</div>
 			<div className="weather-bottom">
 				<div>
 					<select onChange={handleChange} name="startLocation">
 						<option>Select start location</option>
 						{/* populate dropdown with all locations */}
-						{results.map((result, index) => {
-							return <option key={index}>{result.area}</option>;
+						{APIresults.map((result, index) => {
+							return <option key={"s" + index}>{result.area}</option>;
 						})}
 					</select>
 					{/* conditional display to show start location and start forecast */}
 					{locationSelection.startLocation != "Select start location" &&
-						locationSelection.startLocation + "-" + locationSelection.startForecast}
+						locationForecast.startForecast}
 				</div>
 				<div>
 					<select onChange={handleChange} name="endLocation">
 						<option>Select end location</option>
-						{results.map((result, index) => {
-							return <option key={index}>{result.area}</option>;
+						{APIresults.map((result, index) => {
+							return <option key={"e" + index}>{result.area}</option>;
 						})}
 					</select>
-					{locationSelection.endLocation != "Select end location" &&
-						locationSelection.endLocation + "-" + locationSelection.endForecast}
+					{locationSelection.endLocation != "Select end location" && locationForecast.endForecast}
 				</div>
 			</div>
 		</>
