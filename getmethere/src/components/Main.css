@@ -1,0 +1,35 @@
+body {
+	text-align: center;
+}
+
+.gridContainer {
+	display: grid;
+	border: 2px solid black;
+	width: 50vw;
+	height: 80vh;
+	margin: auto;
+	padding: 10px;
+	grid-template-rows: 33% 33% 33%;
+	grid-template-areas:
+		"a"
+		"b"
+		"c";
+}
+
+.gridItem-location {
+	grid-area: a;
+	border: 2px solid black;
+	margin: 5px;
+}
+.gridItem-weather {
+	grid-area: b;
+	border: 2px solid black;
+	margin: 5px;
+}
+.gridItem-transport,
+.gridItem-taxi,
+.gridItem-carpark {
+	grid-area: c;
+	border: 2px solid black;
+	margin: 5px;
+}
