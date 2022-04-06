@@ -1,0 +1,27 @@
+import React from "react";
+import axios from "axios";
+import moment from "moment";
+
+export default function taxi() {
+    const [results, setResults] = React.useState([]);
+    const getAPI = async () => {
+        const response = await axios.get(`https://api.data.gov.sg/v1/transport/taxi-availability`
+        );
+        if (response.status === 200) {
+            // console.log(response);
+            console.log(response.data.items[0].forecasts);
+            setResults(response.data.items[0].forecasts);
+        }
+    };
+    React.useEffect(() => {
+        getAPI();
+    }, []);
+
+    return (
+        <>
+            <div>
+                <h1>Tell me the nearest taxi:</h1>
+            </div>
+        </>
+    );
+}
