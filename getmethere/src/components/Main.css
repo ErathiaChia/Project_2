@@ -1,15 +1,59 @@
-body {
+h2 {
+	font-family: "Coolvetica";
+	font-size: 70px;
+	margin: 50px;
+	animation-duration: 3s;
+	animation-name: slidein;
+	background-color: lightblue;
+}
+
+@keyframes slidein {
+	from {
+	  margin-left: 100%;
+	  width: 300%;
+	}
+  
+	to {
+	  margin-left: 0%;
+	  width: 100%;
+	}
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(82, 78, 78);
+  }
+  
+  li {
+	float: left;
+  }
+  
+  li a {
+	display: block;
+	font-family: "Coolvetica";
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+  }
+  
+  li a:hover {
+	background-color: lightblue;
+  }
+
+ body {
 	text-align: center;
 }
 
 .gridContainer {
 	display: grid;
-	border: 2px solid black;
-	width: 50vw;
-	height: 80vh;
-	margin: auto;
-	padding: 10px;
-	grid-template-rows: 33% 33% 33%;
+	width: 100%;
+	height: 500px;
+	grid-template-rows: 100% 100% 100%;
 	grid-template-areas:
 		"a"
 		"b"
@@ -18,18 +62,38 @@ body {
 
 .gridItem-location {
 	grid-area: a;
-	border: 2px solid black;
-	margin: 5px;
+	font-family: "Coolvetica";
+	font-size: 85px;
+	text-align: left;
+	line-height: 0px;
+	margin: 50px 30px;
+	background: url("../assets/location.jpg");
+	background-size: 420px 420px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 .gridItem-weather {
 	grid-area: b;
-	border: 2px solid black;
-	margin: 5px;
+	font-family: "Coolvetica";
+	font-size: 50px;
+	text-align: right;
+	line-height: 100px;
+	margin: 50px 80px;
+	background: url("../assets/weather.jpg");
+	background-size: 500px 350px;
+	background-repeat: no-repeat;
+	background-position: left;
 }
 .gridItem-transport,
 .gridItem-taxi,
 .gridItem-carpark {
 	grid-area: c;
-	border: 2px solid black;
-	margin: 5px;
+	font-family: "Coolvetica";
+	font-size: 30px;
+	text-align: center;
+	background: url("../assets/carpark.jpg");
+	background-size: 450px 350px;
+	background-repeat: no-repeat;
+	background-position: right;
 }
+

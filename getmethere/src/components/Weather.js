@@ -1,7 +1,8 @@
 function weather() {
 	return (
 		<>
-			<p>Weather</p>
+			<p>the weather is</p>
+			<p>in the area of</p>
 		</>
 	);
 }

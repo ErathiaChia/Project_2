@@ -1,7 +1,9 @@
 function location() {
 	return (
 		<>
-			<p>location</p>
+			<p>where</p>
+			<p>would you like</p>
+			<p>to go?</p>
 		</>
 	);
 }
