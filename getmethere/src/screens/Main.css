@@ -1,0 +1,118 @@
+body {
+	text-align: center;
+}
+
+.gridContainer {
+	display: grid;
+	border: hidden;
+	width: 50vw;
+	height: 100vh;
+	margin: auto;
+	padding: 10px;
+	grid-template-rows: 33% 33% 33%;
+	grid-template-areas:
+		"a"
+		"b"
+		"c";
+}
+
+.gridItem-location {
+	grid-area: a;
+	border: 2px solid dimgray;
+	border-radius: 25px;
+	margin: 5px;
+	background-color: lightgrey;
+	opacity: 0.5;
+}
+
+.gridItem-location:hover {
+	opacity: 1;
+	background-color: white;
+}
+.gridItem-weather {
+	grid-area: b;
+	border: 2px solid dimgray;
+	border-radius: 25px;
+	margin: 5px;
+	background-color: lightgrey;
+	opacity: 0.5;
+}
+
+.gridItem-weather:hover {
+	opacity: 1;
+	background-color: white;
+}
+
+.gridItem-transport {
+	grid-area: c;
+	border: 2px solid dimgray;
+	border-radius: 25px;
+	margin: 5px;
+	background-color: lightgrey;
+	opacity: 0.5;
+}
+
+.gridItem-transport:hover {
+	opacity: 1;
+	background-color: white;
+}
+
+.image-driving {
+	width: 100px;
+	height: 100px;
+	opacity: 1;
+	display: block;
+	transition: 0.5s ease;
+	backface-visibility: hidden;
+	border: hidden;
+	margin-top: 10px;
+}
+
+.image-taxi {
+	width: 100px;
+	height: 100px;
+	opacity: 1;
+	display: block;
+	transition: 0.5s ease;
+	backface-visibility: hidden;
+	border: hidden;
+	margin-top: -12%;
+}
+
+.middle-carpark {
+	transition: 0.5s ease;
+	opacity: 0;
+	position: absolute;
+	border: hidden;
+}
+
+.middle-taxi {
+	transition: 0.5s ease;
+	opacity: 0;
+	position: absolute;
+	margin-top: -1%;
+	margin-left: 1.5%;
+	border: hidden;
+}
+
+.text {
+	background-color: grey;
+	color: white;
+	font-size: 12px;
+	padding: 16px 33px;
+}
+.carpark:hover .image-driving,
+.taxi:hover .image-taxi {
+	opacity: 0.3;
+}
+
+.carpark:hover .middle-carpark,
+.taxi:hover .middle-taxi {
+	opacity: 1;
+}
+.flex-container-transport {
+	display: flex;
+	flex-direction: row;
+	border: hidden;
+	justify-content: space-evenly;
+}

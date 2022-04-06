@@ -1,7 +1,7 @@
 function weather() {
 	return (
 		<>
-			<p>Weather</p>
+			<p>How Is The Weather?</p>
 		</>
 	);
 }

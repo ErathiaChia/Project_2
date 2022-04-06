@@ -1,7 +1,7 @@
 function location() {
 	return (
 		<>
-			<p>location</p>
+			<p>Locations</p>
 		</>
 	);
 }

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import MainScreen from "./components/Main";
+import MainScreen from "./screens/Main";
 
 ReactDOM.render(
 	<React.StrictMode>
