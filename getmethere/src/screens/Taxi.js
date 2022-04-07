@@ -42,16 +42,24 @@ export default function Taxi(props) {
 	const [results, setResults] = React.useState([]);
 
 	const getAPI = async () => {
-		const response = await axios.get(`https://api.data.gov.sg/v1/transport/taxi-availability`);
+		const response = await axios.get(
+			`https://api.data.gov.sg/v1/transport/taxi-availability`
+		);
 		if (response.status === 200) {
 			const taxicoord = response.data.features[0].geometry.coordinates;
 			alltaxiavailbility = taxicoord.length;
 			setResults(taxicoord);
 			for (var i = 0; i < taxicoord.length; i++) {
 				//console.log(taxicoord[i][0]);
-				if (taxicoord[i][0] - MYlongitude <= 0.01 && MYlongitude - taxicoord[i][0] <= 0.01) {
+				if (
+					taxicoord[i][0] - MYlongitude <= 0.01 &&
+					MYlongitude - taxicoord[i][0] <= 0.01
+				) {
 					x++;
-					if (taxicoord[i][1] - MYlatitude <= 0.01 && MYlatitude - taxicoord[i][1] <= 0.01) {
+					if (
+						taxicoord[i][1] - MYlatitude <= 0.01 &&
+						MYlatitude - taxicoord[i][1] <= 0.01
+					) {
 						v++;
 					}
 				}
@@ -72,11 +80,9 @@ export default function Taxi(props) {
 
 	return (
 		<>
+			<h1>Tell me the nearest taxi:</h1>
 			<div>
-				<h1>Tell me the nearest taxi:</h1>
-				<div>
-					<p id="totalTaxi"></p>
-				</div>
+				<p id="totalTaxi"></p>
 			</div>
 		</>
 	);

@@ -30,7 +30,16 @@ export default function MainScreen() {
 
 	return (
 		<>
-			<h1>Get Me There</h1>
+			<h2>get me THERE!</h2>
+
+			{/* <ul>
+				<li>
+					<a class="active" href="">
+						{" "}
+					</a>
+				</li>
+			</ul> */}
+			<br />
 			<div className="gridContainer">
 				<div className="gridItem-location">
 					{/* Weather API called in LocationScreen and data is passed back to parent */}

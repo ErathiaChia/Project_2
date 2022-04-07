@@ -42,7 +42,9 @@ export default function Location(props) {
 			};
 		});
 
-		let index = APIresults.findIndex((location) => location.area == event.target.value);
+		let index = APIresults.findIndex(
+			(location) => location.area == event.target.value
+		);
 		if (index > -1) {
 			if (event.target.name == "startLocation") {
 				setLocationForecast((prevData) => {
@@ -81,7 +83,11 @@ export default function Location(props) {
 	}, []);
 	return (
 		<>
-			<p>Locations</p>
+			<div className="locationtext">
+				<p>where</p>
+				<p>would you like</p>
+				<p>to go?</p>
+			</div>
 			<div className="weather-bottom">
 				<div>
 					<select onChange={handleChange} name="startLocation">
