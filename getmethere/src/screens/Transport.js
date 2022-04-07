@@ -3,6 +3,8 @@ import taxi from "../assets/taxi.png";
 import drive from "../assets/drive.png";
 import driving from "../assets/driving.gif";
 import movingtaxi from "../assets/taxi-cab.gif";
+import TaxiScreen from "./Taxi";
+import CarparkScreen from "./Carpark";
 
 function transport() {
 	return (
@@ -29,10 +31,14 @@ function transport() {
 			<div>
 				<Switch>
 					<Route path="/carpark">
-						<div>Carpark</div>
+						<div>
+							<CarparkScreen />
+						</div>
 					</Route>
 					<Route path="/taxi">
-						<div>Taxi</div>
+						<div>
+							<TaxiScreen />
+						</div>
 					</Route>
 				</Switch>
 			</div>

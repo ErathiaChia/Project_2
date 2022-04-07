@@ -1,4 +1,5 @@
 import React from "react";
+import Cloudy from "../assets/cloudy.png";
 export default function Weather(props) {
 	return (
 		<>
