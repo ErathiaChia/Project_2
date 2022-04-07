@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 
 export default function Taxi(props) {
-	console.log(props.coordinates);
+	console.log("start", props.coordinates.start.latitude, props.coordinates.start.longitude);
+	console.log("end", props.coordinates.end.latitude, props.coordinates.end.longitude);
 
 	let alltaxiavailbility = "";
 	let MYlongitude = "103.8818942";
@@ -42,24 +43,16 @@ export default function Taxi(props) {
 	const [results, setResults] = React.useState([]);
 
 	const getAPI = async () => {
-		const response = await axios.get(
-			`https://api.data.gov.sg/v1/transport/taxi-availability`
-		);
+		const response = await axios.get(`https://api.data.gov.sg/v1/transport/taxi-availability`);
 		if (response.status === 200) {
 			const taxicoord = response.data.features[0].geometry.coordinates;
 			alltaxiavailbility = taxicoord.length;
 			setResults(taxicoord);
 			for (var i = 0; i < taxicoord.length; i++) {
 				//console.log(taxicoord[i][0]);
-				if (
-					taxicoord[i][0] - MYlongitude <= 0.01 &&
-					MYlongitude - taxicoord[i][0] <= 0.01
-				) {
+				if (taxicoord[i][0] - MYlongitude <= 0.01 && MYlongitude - taxicoord[i][0] <= 0.01) {
 					x++;
-					if (
-						taxicoord[i][1] - MYlatitude <= 0.01 &&
-						MYlatitude - taxicoord[i][1] <= 0.01
-					) {
+					if (taxicoord[i][1] - MYlatitude <= 0.01 && MYlatitude - taxicoord[i][1] <= 0.01) {
 						v++;
 					}
 				}

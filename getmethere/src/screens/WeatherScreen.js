@@ -25,16 +25,14 @@ export default function Weather(props) {
 				</tr>
 				<tr>
 					<td>
-						{startLocationForecast == ("Cloudy" || "Partly Cloudy") && (
+						{startLocationForecast == ("Cloudy" || "Partly Cloudy" || "Partly Cloudy (Night)") && (
 							<img className="image-weather" src={Cloudy} />
 						)}
 						{startLocationForecast ==
-							("Passing Showers" ||
-								"Light Showers" ||
-								"Light Rain" ||
-								"Showers") && <img className="image-weather" src={LightRain} />}
-						{startLocationForecast ==
-							("Moderate Rain" || "Heavy Rain" || "Heavy Showers") && (
+							("Passing Showers" || "Light Showers" || "Light Rain" || "Showers") && (
+							<img className="image-weather" src={LightRain} />
+						)}
+						{startLocationForecast == ("Moderate Rain" || "Heavy Rain" || "Heavy Showers") && (
 							<img className="image-weather" src={HeavyRain} />
 						)}
 						{startLocationForecast == ("Fair" || "Fair & Warm") && (
@@ -58,12 +56,10 @@ export default function Weather(props) {
 							<img className="image-weather" src={Cloudy} />
 						)}
 						{endLocationForecast ==
-							("Passing Showers" ||
-								"Light Showers" ||
-								"Light Rain" ||
-								"Showers") && <img className="image-weather" src={LightRain} />}
-						{endLocationForecast ==
-							("Moderate Rain" || "Heavy Rain" || "Heavy Showers") && (
+							("Passing Showers" || "Light Showers" || "Light Rain" || "Showers") && (
+							<img className="image-weather" src={LightRain} />
+						)}
+						{endLocationForecast == ("Moderate Rain" || "Heavy Rain" || "Heavy Showers") && (
 							<img className="image-weather" src={HeavyRain} />
 						)}
 						{endLocationForecast == ("Fair" || "Fair & Warm") && (

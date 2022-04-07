@@ -51,10 +51,9 @@ export default function MainScreen() {
 				</div>
 				<div className="gridItem-transport">
 					<Router>
+						<TransportScreen />
 						<Switch>
-							<Route path="/">
-								<TransportScreen />
-							</Route>
+							{/* <Route path="/"></Route> */}
 							<Route path="/taxi">
 								<TaxiScreen coordinates={locationLatLong} />
 							</Route>
