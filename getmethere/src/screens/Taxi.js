@@ -1,49 +1,48 @@
 import React from "react";
 import axios from "axios";
 
-let alltaxiavailbility = '';
-let MYlongitude = '103.8818942';
-let MYlatitude = '1.3233492';
-var x = '', v = '';
-const GoodTaxi = [];
+export default function Taxi(props) {
+	console.log(props.coordinates);
 
-const geoFindMe = () => {
+	let alltaxiavailbility = "";
+	let MYlongitude = "103.8818942";
+	let MYlatitude = "1.3233492";
+	var x = "",
+		v = "";
+	const GoodTaxi = [];
 
-	const status = '';//document.querySelector('#status');
-	const mapLink = '';//document.querySelector('#map-link');
+	const geoFindMe = () => {
+		const status = ""; //document.querySelector('#status');
+		const mapLink = ""; //document.querySelector('#map-link');
 
+		//mapLink.href = '';
+		//mapLink.textContent = '';
 
-	//mapLink.href = '';
-	//mapLink.textContent = '';
+		function success(position) {
+			MYlatitude = position.coords.latitude;
+			MYlongitude = position.coords.longitude;
 
-	function success(position) {
-		MYlatitude = position.coords.latitude;
-		MYlongitude = position.coords.longitude;
+			//status.textContent = '';
+			//mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+			console.log(`Latitude: ${MYlatitude} °, Longitude: ${MYlongitude} °`);
+		}
 
-		//status.textContent = '';
-		//mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-		console.log(`Latitude: ${MYlatitude} °, Longitude: ${MYlongitude} °`);
-	}
+		function error() {
+			//status.textContent = 'Unable to retrieve your location';
+		}
 
-	function error() {
-		//status.textContent = 'Unable to retrieve your location';
-	}
+		if (!navigator.geolocation) {
+			//status.textContent = 'Geolocation is not supported by your browser';
+		} else {
+			//status.textContent = 'Locating…';
+			navigator.geolocation.getCurrentPosition(success, error);
+		}
+	};
 
-	if (!navigator.geolocation) {
-		//status.textContent = 'Geolocation is not supported by your browser';
-	} else {
-		//status.textContent = 'Locating…';
-		navigator.geolocation.getCurrentPosition(success, error);
-	}
-
-}
-
-const taxi = () => {
 	const [results, setResults] = React.useState([]);
 
 	const getAPI = async () => {
-		const response = await axios.get(`https://api.data.gov.sg/v1/transport/taxi-availability`
-		);
+		const response = await axios.get(`https://api.data.gov.sg/v1/transport/taxi-availability`);
 		if (response.status === 200) {
 			const taxicoord = response.data.features[0].geometry.coordinates;
 			alltaxiavailbility = taxicoord.length;
@@ -55,21 +54,21 @@ const taxi = () => {
 					if (taxicoord[i][1] - MYlatitude <= 0.01 && MYlatitude - taxicoord[i][1] <= 0.01) {
 						v++;
 					}
-				};
+				}
 			}
-			console.log(`this is the total number of taxi:${alltaxiavailbility}, this is X:${x} , this is V:${v}`);
-			document.getElementById("totalTaxi").innerHTML = `There is this number of taxi around me : ${v}`;
-
+			console.log(
+				`this is the total number of taxi:${alltaxiavailbility}, this is X:${x} , this is V:${v}`
+			);
+			document.getElementById(
+				"totalTaxi"
+			).innerHTML = `There is this number of taxi around me : ${v}`;
 		}
 	};
 
 	React.useEffect(() => {
 		getAPI();
 		geoFindMe();
-
 	}, []);
-
-
 
 	return (
 		<>
@@ -82,5 +81,3 @@ const taxi = () => {
 		</>
 	);
 }
-
-export default taxi;

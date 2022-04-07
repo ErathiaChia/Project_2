@@ -13,6 +13,11 @@ export default function Location(props) {
 		startForecast: "",
 		endForecast: "",
 	});
+	const [APILatLong, setAPILatLong] = React.useState([]);
+	const [locationLatLong, setLocationLatLong] = React.useState({
+		start: { latitude: 0, longitude: 0 },
+		end: { latitude: 0, longitude: 0 },
+	});
 
 	const getAPI = async () => {
 		const response = await axios.get(
@@ -23,7 +28,8 @@ export default function Location(props) {
 			// `https://api.data.gov.sg/v1/environment/2-hour-weather-forecast?date=2022-03-05`
 		);
 		if (response.status === 200) {
-			// console.log(response);
+			console.log(response.data);
+			setAPILatLong(response.data.area_metadata);
 			console.log(response.data.items[0].forecasts);
 			setAPIResults(response.data.items[0].forecasts);
 		}
@@ -36,15 +42,19 @@ export default function Location(props) {
 			};
 		});
 
-		let index = APIresults.findIndex(
-			(location) => location.area == event.target.value
-		);
+		let index = APIresults.findIndex((location) => location.area == event.target.value);
 		if (index > -1) {
 			if (event.target.name == "startLocation") {
 				setLocationForecast((prevData) => {
 					return {
 						...prevData,
 						startForecast: APIresults[index].forecast,
+					};
+				});
+				setLocationLatLong((prevData) => {
+					return {
+						...prevData,
+						start: APILatLong[index].label_location,
 					};
 				});
 			}
@@ -55,11 +65,17 @@ export default function Location(props) {
 						endForecast: APIresults[index].forecast,
 					};
 				});
+				setLocationLatLong((prevData) => {
+					return {
+						...prevData,
+						end: APILatLong[index].label_location,
+					};
+				});
 			}
 		}
 	}
 	console.log(locationForecast);
-	props.getForecast(locationSelection, locationForecast);
+	props.getForecast(locationSelection, locationForecast, locationLatLong);
 	React.useEffect(() => {
 		getAPI();
 	}, []);
