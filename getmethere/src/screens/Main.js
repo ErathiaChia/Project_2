@@ -16,12 +16,17 @@ export default function MainScreen() {
 		startForecast: "",
 		endForecast: "",
 	});
-	const getForecast = (location, forecast) => {
+	const [locationLatLong, setLocationLatLong] = React.useState({
+		start: { latitude: 0, longitude: 0 },
+		end: { latitude: 0, longitude: 0 },
+	});
+	const getForecast = (location, forecast, coordinates) => {
 		setLocationSelection(location);
 		setLocationForecast(forecast);
+		setLocationLatLong(coordinates);
 	};
 	console.log("main rendered");
-	console.log(locationSelection, locationForecast);
+	console.log(locationSelection, locationForecast, locationLatLong);
 
 	return (
 		<>
@@ -42,7 +47,7 @@ export default function MainScreen() {
 								<TransportScreen />
 							</Route>
 							<Route path="/taxi">
-								<TaxiScreen />
+								<TaxiScreen coordinates={locationLatLong} />
 							</Route>
 							<Route path="/carpark">
 								<CarparkScreen />
