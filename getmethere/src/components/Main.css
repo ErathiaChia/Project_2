@@ -1,10 +1,10 @@
+
 h2 {
 	font-family: "Coolvetica";
 	font-size: 70px;
 	margin: 50px;
 	animation-duration: 3s;
 	animation-name: slidein;
-	background-color: lightblue;
 }
 
 @keyframes slidein {
@@ -96,4 +96,3 @@ ul {
 	background-repeat: no-repeat;
 	background-position: right;
 }
-
