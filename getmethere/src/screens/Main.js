@@ -32,13 +32,13 @@ export default function MainScreen() {
 		<>
 			<h2>get me THERE!</h2>
 
-			{/* <ul>
+			<ul>
 				<li>
 					<a class="active" href="">
 						{" "}
 					</a>
 				</li>
-			</ul> */}
+			</ul>
 			<br />
 			<div className="gridContainer">
 				<div className="gridItem-location">

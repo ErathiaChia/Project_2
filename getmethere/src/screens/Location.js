@@ -42,7 +42,9 @@ export default function Location(props) {
 			};
 		});
 
-		let index = APIresults.findIndex((location) => location.area == event.target.value);
+		let index = APIresults.findIndex(
+			(location) => location.area == event.target.value
+		);
 		if (index > -1) {
 			if (event.target.name == "startLocation") {
 				setLocationForecast((prevData) => {

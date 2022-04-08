@@ -7,12 +7,13 @@ import CarparkScreen from "./Carpark";
 function transport() {
 	return (
 		<>
-			<div className="transporttext">
-				<p>how</p>
-				<p>will you</p>
-				<p>travel?</p>
-			</div>
 			<div className="flex-container-transport">
+				<div className="transporttext">
+					<p>how</p>
+					<p>will you</p>
+					<p>travel?</p>
+				</div>
+
 				<div className="transport-item">
 					<Link to="/carpark">
 						<div className="carpark">

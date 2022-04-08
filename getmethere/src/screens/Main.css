@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
 h2 {
-	font-family: "Coolvetica";
+	font-family: "Quicksand";
 	font-size: 70px;
 	margin: 50px;
 	animation-duration: 3s;
@@ -32,7 +35,7 @@ li {
 
 li a {
 	display: block;
-	font-family: "Coolvetica";
+	font-family: "Muli";
 	font-size: 20px;
 	color: white;
 	text-align: center;
@@ -52,7 +55,7 @@ body {
 	display: grid;
 	border: hidden;
 	width: 50vw;
-	margin: auto;
+	margin: 2% auto;
 	position: static;
 	grid-template-areas:
 		"a"
@@ -78,7 +81,7 @@ body {
 }
 
 .locationtext {
-	font-family: "Coolvetica";
+	font-family: "Quicksand";
 	font-size: 65px;
 	text-align: left;
 	line-height: 0px;
@@ -91,7 +94,7 @@ body {
 	border-radius: 25px;
 	margin: 5px;
 	background: url("../assets/weather.jpg");
-	background-size: 430px 300px;
+	background-size: 380px 250px;
 	background-repeat: no-repeat;
 	background-position: left;
 	padding: 5% 0%;
@@ -104,7 +107,7 @@ body {
 }
 
 .weathertext {
-	font-family: "Coolvetica";
+	font-family: "Quicksand";
 	font-size: 65px;
 	text-align: right;
 	line-height: 0px;
@@ -118,13 +121,27 @@ body {
 	right: 12%;
 }
 
+table {
+	margin: auto;
+	width: 50%;
+	padding-top: 0%;
+	border: hidden;
+	position: relative;
+	top: 10%;
+}
+
+td {
+	margin: auto;
+	width: 50%;
+}
+
 .gridItem-transport {
 	grid-area: c;
 	border: 2px solid dimgray;
 	border-radius: 25px;
 	margin: 5px;
 	background: url("../assets/transport.jpg");
-	background-size: 500px 320px;
+	background-size: 450px 270px;
 	background-repeat: no-repeat;
 	background-position: right;
 }
@@ -135,12 +152,12 @@ body {
 	box-shadow: 7px 7px 10px lightsteelblue;
 }
 .transporttext {
-	font-family: "Coolvetica";
+	font-family: "Quicksand";
 	font-size: 65px;
 	text-align: left;
 	line-height: 0px;
-	margin: 40px 60px;
-	padding-bottom: 5%;
+	margin: 0px 60px;
+	padding-bottom: 0%;
 	border: hidden;
 }
 
@@ -202,14 +219,16 @@ body {
 	flex-direction: column;
 	border: hidden;
 	justify-content: space-evenly;
-	padding-top: 30%;
+	padding-top: 0%;
 	padding-bottom: 5%;
 }
 
 .transport-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	padding-left: 3%;
 	border: hidden;
-	display: inline-flex;
-	justify-content: center;
 }
 
 .taxiscreen {
@@ -231,15 +250,4 @@ body {
 	border: 2px solid black;
 	display: inline-flex;
 	justify-content: center;
-}
-
-table {
-	margin: auto;
-	width: 50%;
-	padding-top: 15%;
-}
-
-td {
-	margin: auto;
-	width: 50%;
 }
