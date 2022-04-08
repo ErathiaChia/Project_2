@@ -2,11 +2,13 @@
   "name": "getmethere",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://edisonzsq.github.io/deploy-test",    
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "gh-pages": "^3.2.3",
     "moment": "^2.29.2",
     "navigator": "^1.0.1",
     "react": "^18.0.0",
@@ -17,6 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
